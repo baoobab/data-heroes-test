@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "name": "baoobab",
+  "version": "1.0.0",
+  "description": "test api",
+  "main": "index",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "baoobab",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "pg": "^8.12.0"
+  }
+}
