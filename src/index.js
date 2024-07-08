@@ -43,31 +43,15 @@ async function loadCharacters(dbClient) {
 
 async function main() {
     const dbClient = new pg.Client(config);
-    dbClient.connect((err) => {
-        if (err) throw err;
-    });
-    
-    dbClient.query("SELECT version()", (err, q) => {
-        if (err) throw err;
-        console.log(q.rows[0]);
-        dbClient.end();
-    });
 
-    // try {
-    //     await dbClient.connect();
-        
-    //     // await loadCharacters(dbClient);
-    //     dbClient.query("SELECT version()", (err, q) => {
-    //         if (err) throw err;
-    //         console.log(q.rows[0]);
-    //         dbClient.end();
-    //     });
-        
-    // } catch (error) {
-    //     console.log('Error while connecting to db:', error);
-    // } finally {
-    //     await dbClient.end();
-    // }
+    try {
+        await dbClient.connect();
+        await loadCharacters(dbClient);
+    } catch (error) {
+        console.log('Error while connecting to db:', error);
+    } finally {
+        await dbClient.end();
+    }
 }
 
 main();
